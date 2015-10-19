@@ -12,10 +12,13 @@ var {
   View,
 } = React;
 
+var ToolBar = require('./ToolBar');
+
 var WuLiaoTu = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
+        <ToolBar />
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
@@ -32,9 +35,9 @@ var WuLiaoTu = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
