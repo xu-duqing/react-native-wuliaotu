@@ -1,6 +1,5 @@
 /**
- * 
- * @name guang
+ * Created by Guang on 2015-10-19
  */
 'usr strict'
 

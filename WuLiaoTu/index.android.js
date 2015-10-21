@@ -13,12 +13,14 @@ var {
 } = React;
 
 var ToolBar = require('./ToolBar');
+var TuListView = require('./TuListView');
 
 var WuLiaoTu = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
         <ToolBar />
+        <TuListView />
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
