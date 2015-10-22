@@ -33,9 +33,9 @@ var TuItem = React.createClass({
 var styles = StyleSheet.create({
 
 	item:{
-	    flexDirection: 'row',
 	    borderBottomWidth:1,
-	    borderColor:"#ececec"
+	    borderColor:"#ececec",
+	    backgroundColor: '#F5FCFF',
   	},
 
   	image : {

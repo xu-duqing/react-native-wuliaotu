@@ -11,6 +11,7 @@ var {
 	View,
 	StyleSheet,
 	Text,
+	ListView,
 } = React
 
 var REQUEST_URL = 'http://jandan.net/?oxwlxojflwblxbsapi=jandan.get_pic_comments';
@@ -19,7 +20,10 @@ var TuListView = React.createClass({
 
 	getInitialState : function(){
 		return {
-			wuliaotuData : null,
+			dataSource : new ListView.DataSource({
+				rowHasChanged : (row1,row2) => row1 !== row2,
+			}),
+			loaded : false,
 		};
 	},
 
@@ -33,15 +37,19 @@ var TuListView = React.createClass({
 		.then((responseData) => {
 			console.log(responseData);
 			this.setState({
-				wuliaotuData : responseData.comments,
+				dataSource : this.state.dataSource.cloneWithRows(responseData.comments),
+				loaded : true,
 			});
 
 		}).done();
 	},
 
-	renderListView : function(itemData){
+	renderListView : function(data){
+		console.log(data.length);
 		return (
-			<TuItem image = {itemData.pics[0]}/>
+			<ListView
+				dataSource = {data}
+				renderRow = {this.renderScoreboard}/>
 		);
 	},
 	renderLodingView : function(){
@@ -53,15 +61,19 @@ var TuListView = React.createClass({
 				</View>
 			);
 	},
-
+	renderScoreboard : function(rowData){
+		return(
+			<TuItem image = {rowData.pics[0]} />
+			);
+	},
 
 	render : function(){
 
-		if (!this.state.wuliaotuData) {
+		if (!this.state.loaded) {
 			return this.renderLodingView();
 		};
-		var data = this.state.wuliaotuData[1];
-		return this.renderListView(data);
+
+		return this.renderListView(this.state.dataSource);
 	}
 });
 
@@ -72,6 +84,10 @@ var styles = StyleSheet.create({
 	    justifyContent: 'center',
 	    alignItems: 'center',
    		backgroundColor: '#F5FCFF',
+  	},
+
+  	list : {
+
   	},
 
 });

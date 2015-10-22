@@ -21,15 +21,6 @@ var WuLiaoTu = React.createClass({
       <View style={styles.container}>
         <ToolBar />
         <TuListView />
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
       </View>
     );
   }
@@ -37,10 +28,10 @@ var WuLiaoTu = React.createClass({
 
 var styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     // justifyContent: 'center',
     // alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFFFFF',
   },
   welcome: {
     fontSize: 20,
