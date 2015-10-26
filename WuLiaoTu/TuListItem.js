@@ -15,17 +15,40 @@ var {
 
 var TuItem = React.createClass({
 
+	getInitialState : function(){
+		return{
+			loding : true,
+		};
+	},
+
+	onLoaded: function(e){
+    	console.log('LOAD ENDED');
+  	},
 	render : function(){
 
 		console.log(this.props.image);
 		return(
 			<View style = {styles.item}>
 				<Image style = {styles.image}
-				source={{uri : this.props.image}}/>
+				source={{uri : this.props.image}}
+				onLoadStart = {this.onLoaded}
+				onLoad = {() => this.setState({loding : false})}>
+					{this.lodingView()}
+				</Image>
 			</View>
 			);
 	},
 
+	lodingView : function(){
+		if (this.state.loding) {
+			return(
+			<Text>
+				图片加载中....
+			</Text>
+			);
+		}
+		return null;
+	}
 
 
 });

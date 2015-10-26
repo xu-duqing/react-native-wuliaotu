@@ -6,20 +6,34 @@
 var React = require('react-native');
 var {
 	ToolbarAndroid,
+	NavigatorIOS,
 	StyleSheet,
+	Platform,
 	Image,
 } = React;
 
+var TuListItem = require('./TuListItem');
 var ToolBar = React.createClass({
 	render : function(){
-		return (
-			<ToolbarAndroid
-				style={styles.toolbar}
-				title="无聊图"
-				titleColor="white"
-				// navIcon={require('image!ic_launcher')}
-			/>
+		if (Platform.OS === 'android') {
+			return (
+				<ToolbarAndroid
+					style={styles.toolbar}
+					title="无聊图"
+					titleColor="white"
+				/>
+				);
+		} else {
+			return (
+				<NavigatorIOS 
+					style={styles.toolbar} 
+					initialRoute = {{title : '无聊图',component:TuListItem}}
+					titleTextColor = "white"
+					barTintColor = "black"
+				/>
 			);
+		}
+		
 	}
 });
 
