@@ -5,6 +5,7 @@
 'usr strict'
 
 var React = require('react-native');
+var RefreshableListView = require("react-native-refreshable-listview");
 var {
 	Image,
 	Text,
@@ -92,9 +93,12 @@ var TuListView = React.createClass({
 	renderListView : function(data){
 		console.log(data.length);
 		return (
-			<ListView
+			<RefreshableListView
 				dataSource = {data}
-				renderRow = {this.renderScoreboard}/>
+				renderRow = {this.renderScoreboard}
+				loadData={() => this.fetchData()}
+				minPulldownDistance = {50}
+				refreshDescription="下拉加载更多...."/>
 		);
 	},
 	renderLodingView : function(){
