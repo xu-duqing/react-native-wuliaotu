@@ -5,7 +5,7 @@
 'usr strict'
 
 var React = require('react-native');
-// var RefreshableListView = require("react-native-refreshable-listview");
+
 var {
 	Image,
 	Text,
@@ -62,6 +62,7 @@ var TuItem = React.createClass({
 
 });
 
+var items = [];
 var TuListView = React.createClass({
 
 	getInitialState : function(){
@@ -84,8 +85,12 @@ var TuListView = React.createClass({
 		.then((response) => response.json())
 		.then((responseData) => {
 			console.log(responseData);
+			responseData.comments.forEach(function(item){
+				items.push(item);
+			});
+			console.log(items);
 			this.setState({
-				dataSource : this.state.dataSource.cloneWithRows(responseData.comments),
+				dataSource : this.state.dataSource.cloneWithRows(items),
 				isLoading : true,
 			});
 
@@ -95,14 +100,19 @@ var TuListView = React.createClass({
 	fetchNextData : function(){
 		this.state.pageIndex++;
 		this.setState({isRefresh : true});
-		console.log(this.state.pageIndex);
+		console.log(this.state.pageIndex);	
 		
 		fetch(REQUEST_URL + this.state.pageIndex)
 		.then((response) => response.json())
 		.then((responseData) => {
 			console.log(responseData);
+			
+			responseData.comments.forEach(function(item){
+				items.push(item);
+			});	
+
 			this.setState({
-				dataSource : this.state.dataSource.cloneWithRows(responseData.comments),
+				dataSource : this.state.dataSource.cloneWithRows(items),
 				isRefresh : false,
 			});
 
@@ -133,6 +143,7 @@ var TuListView = React.createClass({
 				dataSource = {data}
 				renderRow = {this.renderScoreboard}
 				onEndReached = {() => this._onEndReached()}
+				onEndReachedThreshold = {1}
 				renderFooter = {() => this.footLoadView()}/>
 		);
 	},
