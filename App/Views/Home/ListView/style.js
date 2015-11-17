@@ -13,10 +13,16 @@ module.exports = React.StyleSheet.create({
 	    backgroundColor: '#F5FCFF',
   	},
 
+  	itemTop:{
+  		flexDirection: 'row',
+  		marginTop:10,
+  	},
+
   	image : {
   		flex: 1,
   		height: 300,
-	    margin : 10,
+	    marginLeft : 10,
+	    marginRight : 10,
 	    resizeMode: React.Image.resizeMode.contain,
   	},
 	
@@ -26,4 +32,14 @@ module.exports = React.StyleSheet.create({
 	    alignItems: 'center',
    		backgroundColor: '#F5FCFF',
   	},
+  	authorText: {
+  		color:"black",
+  		fontSize: 14,
+  		marginLeft: 10,
+  	},
+  	timeText:{
+  		color:"black",
+  		fontSize: 12,
+  		marginLeft: 10,
+  	}
 });

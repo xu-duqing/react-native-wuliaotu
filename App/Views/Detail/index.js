@@ -7,6 +7,8 @@
 var React = require('react-native');
 var {
 	Image,
+	ScrollView,
+	View,
 } = React;
 
 var styles = require('./style');
@@ -16,9 +18,9 @@ var Detail = React.createClass({
 	render : function(){
 		return (
 			<Image 
-				style = {styles.container}
-				source = {{uri: this.props.route.image}}>
-			</Image>
+				style = {styles.img}
+				resizeMode = {Image.resizeMode.contain}
+				source = {{uri: this.props.route.image}}/>
 			);
 	}
 });

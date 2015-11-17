@@ -34,11 +34,19 @@ var TuItem = React.createClass({
 
 		console.log(this.props.image);
 		return(
-			<TouchableHighlight onPress={() => this._onPress(this.props.image)}>
+			<TouchableHighlight onPress={() => this._onPress(this.props.itemData.pics[0])}>
 				<View style = {styles.item}>
+					<View style ={styles.itemTop}>
+						<Text style = {styles.authorText}>
+							{this.props.itemData.comment_author}
+						</Text>
+						<Text style = {styles.timeText}>
+							{this.props.itemData.comment_date}
+						</Text>
+					</View>
 					<Image 
 					style = {styles.image} 
-					source={{uri : this.props.image}}
+					source={{uri : this.props.itemData.pics[0]}}
 					onLoadStart = {() => {this.state.loding = true}}
 					onLoadEnd = {() => {this.state.loding = false}}>
 						{this.lodingView}
@@ -158,7 +166,7 @@ var TuListView = React.createClass({
 	},
 	renderScoreboard : function(rowData){
 		return(
-			<TuItem onPress={this._onPress} image = {rowData.pics[0]} />
+			<TuItem onPress={this._onPress} itemData = {rowData} />
 			);
 	},
 

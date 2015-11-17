@@ -10,5 +10,13 @@ module.exports = React.StyleSheet.create({
 
 	container:{
 		flex:1,
+		backgroundColor: '#6A85B1',
+	},
+	div:{
+		flex:1,
+		backgroundColor: '#000000',
+	},
+	img:{
+		flex:1,
 	},
 });
