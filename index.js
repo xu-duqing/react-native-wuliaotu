@@ -24,10 +24,21 @@ Platform.OS === 'ios' ? StatusBarIOS.setStyle('default', false): null;
 var NavToolbar = React.createClass({
 
 	render :function(){
+		if (this.props.navIcon) {
+			return (
+				<ToolbarAndroid
+					style={{backgroundColor: '#3CABDA', height: 56,}}
+					title={this.props.route.title}
+					navIcon={require('image!ic_arrow_back_white_24dp')}
+					onIconClicked={this.props.navigator.pop}
+					titleColor='white' />
+				)
+		};
 		return (
 			<ToolbarAndroid
 				style={{backgroundColor: '#3CABDA', height: 56,}}
 				title={this.props.route.title}
+				onIconClicked={this.props.navigator.pop}
 				titleColor='white' />
 			)
 	}
@@ -65,7 +76,7 @@ var WuLiao = React.createClass({
 			);
 	},
 
-	renderSceneAndroid : function(route,navigatort){
+	renderSceneAndroid : function(route,navigator){
 
 		var Component = route.component;
 		var navBar = route.navigatorBar;
@@ -73,12 +84,16 @@ var WuLiao = React.createClass({
 		switch (route.id){
 			case "home":
 				Component = HomeView;
-				navBar = <NavToolbar 
+				navBar = <NavToolbar
+					navIcon = {false} 
+					navigator = {navigator}
 					route = {route} />
 				break;
 			case "detail":
 				Component = DetailView;
 				navBar = <NavToolbar 
+					navIcon = {true}
+					navigator = {navigator}
 					route = {route} />
 				break;
 		}
