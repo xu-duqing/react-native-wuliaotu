@@ -31,8 +31,6 @@ var TuItem = React.createClass({
 	},
 
 	render : function(){
-
-		console.log(this.props.image);
 		return(
 			<TouchableHighlight onPress={() => this._onPress(this.props.itemData.pics[0])}>
 				<View style = {styles.item}>
@@ -44,6 +42,10 @@ var TuItem = React.createClass({
 							{this.props.itemData.comment_date}
 						</Text>
 					</View>
+
+					<Text style = {styles.itemContentText}>
+						{this.props.itemData.text_content}
+					</Text>
 					<Image 
 					style = {styles.image} 
 					source={{uri : this.props.itemData.pics[0]}}

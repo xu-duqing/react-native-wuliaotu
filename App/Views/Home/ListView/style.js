@@ -41,5 +41,11 @@ module.exports = React.StyleSheet.create({
   		color:"black",
   		fontSize: 12,
   		marginLeft: 10,
-  	}
+  	},
+    itemContentText:{
+      color:"black",
+      fontSize: 12,
+      marginLeft: 10,
+      marginRight: 10,
+    }
 });
